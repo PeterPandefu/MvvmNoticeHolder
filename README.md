@@ -1,2 +1,2 @@
 # MvvmNoticeHolder
-解决当ViewModel的属性一个多层级的实体类时，这个实体类的属性变化通知到ViewModel
+WPF MVVM 模式下，解决当ViewModel的属性一个多层级的实体类或者集合时，这个实体类的属性变化或者集合内元素变化通知到ViewModel，前提是这个实体类或者集合内元素均实现了`INotifyPropertyChanged`接口
