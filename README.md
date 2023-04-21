@@ -72,8 +72,8 @@
            private static PersonViewModel personViewModel;
            static ViewModels()
            {
-               SimpleIoc.Default.Register<PersonViewModel>();
-               personViewModel = NotifyHolderBindingManager.Binding(SimpleIoc.Default.GetInstance<PersonViewModel>(), SimpleIoc.Default.GetInstance<PersonViewModel>());
+            SimpleIoc.Default.Register<PersonViewModel>();
+            personViewModel = NotifyHolderBindingManager.BindSelfProperty(SimpleIoc.Default.GetInstance<PersonViewModel>());
            }
    
            public static PersonViewModel PersonViewModel { get { return personViewModel; } }
