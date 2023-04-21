@@ -2,6 +2,9 @@
 
 该库解决WPF MVVM 模式下，当ViewModel的属性一个多层级的实体类或者集合时，这个实体类的属性变化或者集合内元素变化通知到ViewModel。
 
+
+dsfdsfsdfdsfgsdfgsdf
+
 ## 前提条件
 
 1. ViewModel需要实现 `INotifyHolder` 接口，用于通知ViewModel刷新。
@@ -9,7 +12,7 @@
    ```c#
    namespace MvvmNoticeHolderLib
    {
-       public interface INotifyHolder
+       public interface INotifyHolder   
        {
            void AfterPropertyChangedNotified(object sender, string info);
        }
