@@ -18,21 +18,9 @@ namespace MvvmNoticeHolder
     public class PersonViewModel : ViewModelBase, INotifyHolder
     {
         private Random random = new Random();
-
+        public event Action<object, PropertyChangedEventArgs> SlavePropertyChanged;
         public PersonViewModel()
         {
-            PropertyChanged += PersonViewModel_PropertyChanged;
-            onePerson = new Person { Name = "OnePerson" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "OnePerson's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } };
-
-            Persons.Add(new Person { Name = "Jack" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "Jack's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } });
-            Persons.Add(new Person { Name = "Jack" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "Jack's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } });
-            Persons.Add(new Person { Name = "Jack" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "Jack's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } });
-            Persons.Add(new Person { Name = "Jack" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "Jack's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } });
-        }
-
-        private void PersonViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-
         }
 
         public void AfterPropertyChangedNotified(object? sender, string info)
@@ -40,16 +28,27 @@ namespace MvvmNoticeHolder
             Message += DateTime.Now.ToString() + "    " + info + "\r\n";
         }
 
-        private RelayCommand? _addCommand = null;
-        public RelayCommand AddCommand
+        private RelayCommand<string> _clickCommand = null;
+        public RelayCommand<string> ClickCommand
         {
-            get => _addCommand ??= new RelayCommand(Add);
-            set => _addCommand = value;
+            get => _clickCommand ??= new RelayCommand<string>(Click);
+            set => _clickCommand = value;
         }
 
-        private void Add()
+        private void Click(string args)
         {
-            Persons.Add(new Person { Name = "Jack" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "Jack's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } });
+            switch (args)
+            {
+                case "Add":
+                    //Persons.Add(new Person { Name = "Jack" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "Jack's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } });
+                    Persons = new ObservableCollection<Person>() { new Person { Name = "Jack" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "Jack's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } } };
+                    break;
+                case "New":
+                    OnePerson = new Person { Name = "OnePerson" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "OnePerson's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } };
+                    break;
+                default:
+                    break;
+            }
         }
 
 

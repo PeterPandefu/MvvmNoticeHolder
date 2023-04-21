@@ -20,4 +20,7 @@ namespace MvvmNoticeHolderLib
             Type = type;
         }
     }
+
+
+
 }

@@ -10,7 +10,7 @@ using WpfApp1;
 namespace MvvmNoticeHolder
 {
 
-    [NoticeFlag(nameof(Child), typeof(string))]
+    [NoticeFlag(nameof(Child), typeof(Person))]
     public class Person : ObservableObject
     {
         private int age;
@@ -24,7 +24,6 @@ namespace MvvmNoticeHolder
                 RaisePropertyChanged();
             }
         }
-
 
         private string name;
 
@@ -45,7 +44,5 @@ namespace MvvmNoticeHolder
             get { return child; }
             set { child = value; RaisePropertyChanged(); }
         }
-
-
     }
 }

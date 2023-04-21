@@ -15,8 +15,7 @@ namespace MvvmNoticeHolder
         static ViewModels()
         {
             SimpleIoc.Default.Register<PersonViewModel>();
-            SimpleIoc.Default.GetInstance<PersonViewModel>();
-            personViewModel = NotifyHolderBindingManager.Binding(SimpleIoc.Default.GetInstance<PersonViewModel>(), SimpleIoc.Default.GetInstance<PersonViewModel>());
+            personViewModel = NotifyHolderBindingManager.BindSelfProperty(SimpleIoc.Default.GetInstance<PersonViewModel>());
         }
 
         public static PersonViewModel PersonViewModel { get { return personViewModel; } }
