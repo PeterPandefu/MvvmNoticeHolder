@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MvvmNoticeHolderLib;
 using System;
@@ -25,7 +25,10 @@ namespace MvvmNoticeHolder
 
         public void AfterPropertyChangedNotified(object? sender, string info)
         {
-            Message += DateTime.Now.ToString() + "    " + info + "\r\n";
+            if (sender is Person aaa)
+            {
+                Message += DateTime.Now.ToString() + $"\t{aaa.Name}." + info + "\r\n";
+            }
         }
 
         private RelayCommand<string> _clickCommand = null;
@@ -40,11 +43,30 @@ namespace MvvmNoticeHolder
             switch (args)
             {
                 case "Add":
-                    //Persons.Add(new Person { Name = "Jack" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "Jack's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } });
-                    Persons = new ObservableCollection<Person>() { new Person { Name = "Jack" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "Jack's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } } };
+                    Persons.Add(new Person
+                    {
+                        Name = "Jack" + random.Next(1, 50),
+                        Age = 15 + random.Next(1, 50),
+                        Child = new Person
+                        {
+                            Name = "Jack's Child" + random.Next(1, 50),
+                            Age = 15 + random.Next(1, 50),
+                            Child = new Person { Name = "Jack's Grandson" + random.Next(1, 50), Age = 15 + random.Next(1, 50) }
+                        }
+                    });
                     break;
                 case "New":
-                    OnePerson = new Person { Name = "OnePerson" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999), Child = new Person { Name = "OnePerson's Child" + random.Next(1, 9999), Age = 15 + random.Next(1, 9999) } };
+                    OnePerson = new Person
+                    {
+                        Name = "Jack" + random.Next(1, 50),
+                        Age = 15 + random.Next(1, 50),
+                        Child = new Person
+                        {
+                            Name = "Jack's Child" + random.Next(1, 50),
+                            Age = 15 + random.Next(1, 50),
+                            Child = new Person { Name = "Jack's Grandson" + random.Next(1, 50), Age = 15 + random.Next(1, 50) }
+                        }
+                    } ;
                     break;
                 default:
                     break;
