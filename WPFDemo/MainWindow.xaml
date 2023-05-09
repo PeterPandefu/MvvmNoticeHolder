@@ -1,4 +1,4 @@
-﻿<Window
+<Window
     x:Class="WpfApp1.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -45,6 +45,14 @@
                     <DataGridTextColumn
                         Binding="{Binding Child.Age}"
                         Header="儿子年龄"
+                        IsReadOnly="False" />
+                    <DataGridTextColumn
+                        Binding="{Binding Child.Child.Name}"
+                        Header="孙子名字"
+                        IsReadOnly="False" />
+                    <DataGridTextColumn
+                        Binding="{Binding Child.Child.Age}"
+                        Header="孙子年龄"
                         IsReadOnly="False" />
                 </DataGrid.Columns>
             </DataGrid>
@@ -98,6 +106,8 @@
                 <TextBlock Width="200" Text="{Binding OnePerson.Age}" />
                 <TextBlock Width="200" Text="{Binding OnePerson.Child.Name}" />
                 <TextBlock Width="200" Text="{Binding OnePerson.Child.Age}" />
+                <TextBlock Width="200" Text="{Binding OnePerson.Child.Child.Name}" />
+                <TextBlock Width="200" Text="{Binding OnePerson.Child.Child.Age}" />
             </StackPanel>
             <StackPanel
                 Grid.Column="1"
@@ -108,6 +118,8 @@
                 <TextBox Width="200" Text="{Binding OnePerson.Age}" />
                 <TextBox Width="200" Text="{Binding OnePerson.Child.Name}" />
                 <TextBox Width="200" Text="{Binding OnePerson.Child.Age}" />
+                <TextBox Width="200" Text="{Binding OnePerson.Child.Child.Name}" />
+                <TextBox Width="200" Text="{Binding OnePerson.Child.Child.Age}" />
             </StackPanel>
 
         </Grid>
